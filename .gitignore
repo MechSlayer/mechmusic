@@ -1,3 +1,5 @@
 *.exe
 node_modules/
 package-lock.json
+.env
+indexdev.js
