@@ -67,6 +67,7 @@ module.exports = class MechMusic {
      */
     async Reproducir(message, fuente, playlist = false) {
         if (!playlist) {
+            if (fuente.match(this.playlistreg)) return this.ReproducirPlaylist(message, fuente)
             if (!fuente.match(this.videoreg)) return this.BuscarListado(message, fuente);
         }
         /**

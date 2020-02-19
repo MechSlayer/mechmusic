@@ -18,6 +18,7 @@ module.exports = class Cola {
         this.message = message;
         this.MechMusic = mechmusic;
         this.conexion = conexion;
+        message.guild.cola = this;
         this.pausado = false;
         this.autodesconectar = autodc;
         this.duracion = 0;
@@ -73,6 +74,10 @@ module.exports = class Cola {
     }
 
     Eliminar(index) {
+
+        if (index.constructor !== Number) index = parseInt(index);
+        if (isNaN(index)) return;
+        index--;
         if (index < 0 || index > this.cola.length) return;
         let url = this.cola.splice(index, 1);
         return url;
@@ -120,8 +125,8 @@ module.exports = class Cola {
      * 
      * @param {Discord.Message} message 
      */
-    Saltar(message) {
-        if (false) {
+    Saltar(message, votacion = true) {
+        if (!votacion) {
             if (this.conexion.dispatcher) this.conexion.dispatcher.end("Skip");
             this.votandoSaltar = false;
             this.votacion = null;
