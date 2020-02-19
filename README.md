@@ -6,7 +6,7 @@ De la gran mayoría se encarga la librería, si deseas cambiar algo específico 
 
 ### Ejemplo usando casi todas las funciones
 ```js
-const MechMusic = require("mechmusic");
+const MechMusic = require("mechmusic").MechMusic;
 const discord = require("discord.js");
 require("dotenv").config();
 
