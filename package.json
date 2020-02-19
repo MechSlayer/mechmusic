@@ -1,0 +1,27 @@
+{
+  "name": "mechmusic",
+  "version": "0.0.1",
+  "description": "Librería para facilitar la creación de bots de música",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MechSlayer/mechmusic.git"
+  },
+  "author": "MechSlayer",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/MechSlayer/mechmusic/issues"
+  },
+  "homepage": "https://github.com/MechSlayer/mechmusic#readme",
+  "dependencies": {
+    "discord.js": "^11.5.1",
+    "node-opus": "^0.3.3",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.5",
+    "ytdl-core": "^1.0.9",
+    "ytpl": "^0.1.20"
+  }
+}
