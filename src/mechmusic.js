@@ -1,7 +1,6 @@
 const Discord = require("discord.js");
 const ytdl = require("ytdl-core");
 const Cola = require("./Cola");
-const EventHandlers = require("./EventHandlers");
 const Youtube = require("./youtube");
 const Lista = require("./Lista");
 module.exports = class MechMusic {
@@ -133,9 +132,6 @@ module.exports = class MechMusic {
         let conexion = await canal.join();
         let cola = new Cola(this, conexion, message, this.autodesconectar);
         this.conexiones.set(canal.guild.id, cola);
-        conexion.on("error", (err) => EventHandlers.OnVoiceError(err, conexion, this));
-        conexion.on("disconnect", (err) => EventHandlers.OnVoiceDisconnect(err, conexion, this));
-        conexion.on("ready", () => EventHandlers.OnReady(conexion, cola, this));
         return cola;
     }
 

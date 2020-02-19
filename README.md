@@ -11,7 +11,7 @@ const discord = require("discord.js");
 require("dotenv").config();
 
 const Client = new discord.Client();
-const mechmusic = new MechMusic(Client, process.env.google);
+const mechmusic = new MechMusic(Client, process.env.google, true, false);
 
 
 Client.on("ready", async () => {
@@ -49,6 +49,14 @@ Client.login(process.env.token)
 
 ### La variable cola también se puede acceder desde el servidor ej: message.guild.cola
 
+
+### [MechMusic](client, key, autodesconectar = false, debug = true)
+La clase principal de la librería
+
+-   client: El cliente de discord que usará esta instancia
+-   key: Clave api de google
+-   autodesconectar: Si se desea que al terminar la cola, el bot se desconecte
+-   debug: Si se desea mostrar en consola los mensajes de depuración
 
 ### [MechMusic].Reproducir(message, fuente, playlist = false)
 El método principal para reproducir música, se encarga de filtrar el tipo de enlace y configurar la cola del bot
@@ -161,3 +169,6 @@ Salta la canción actual, o comienza una votación para saltarla
 
 ### [Cola].Empezar()
 Empieza la reproducción de las cancioens que haya en cola (No usar manualmente)
+
+### [Cola].Shuffle()
+Ordena de manera aleatoria la cola de canciones

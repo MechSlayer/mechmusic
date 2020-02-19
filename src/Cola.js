@@ -44,6 +44,9 @@ module.exports = class Cola {
 
     }
 
+    Shuffle() {
+        this.cola.sort(() => Math.random() - 0.5);
+    }
 
     async Agregar(url, solicitante) {
         let info = await this.MechMusic.ObtenerInfo(url);
@@ -80,7 +83,7 @@ module.exports = class Cola {
         index--;
         if (index < 0 || index > this.cola.length) return;
         let url = this.cola.splice(index, 1);
-        return url;
+        return url[0];
     }
     
     Pausar() {
@@ -94,7 +97,7 @@ module.exports = class Cola {
         .setColor("RANDOM")
         .setTitle("Canciones en cola, página -curpag de -totpag")
         .setFooter(`Restante: ${this.SegundosAMinutos(this.duracion)} minutos`);
-        let lista = new Lista(this.cola, (v, i) => `#${i+1} ${v.titulo} - ${this.SegundosAMinutos(v.duracion)}\n`, {limite_pagina: 10});
+        let lista = new Lista(this.cola, (v, i) => `#${i+1} ${message.author.id === v.solicitante.id ? `**${v.titulo}**` : v.titulo} - ${this.SegundosAMinutos(v.duracion)}\n`, {limite_pagina: 10});
         lista.ListaPaginada(message, embed).then(msg => {if (msg.deletable) msg.delete();});
     }
     Reanudar() {
@@ -103,11 +106,11 @@ module.exports = class Cola {
     }
 
     Desconectar() {
+        this.MechMusic.conexiones.delete(this.message.guild.id);
         this.conexion.disconnect();
         this.cola = [];
         this.finalizado = true;
         this.duracion = 0;
-        this.MechMusic = null;
         this.message = null;
         this.votacion = null;
         this.votandoSaltar = false;
